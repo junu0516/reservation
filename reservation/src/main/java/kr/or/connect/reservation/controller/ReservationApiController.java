@@ -9,15 +9,20 @@ import org.springframework.web.bind.annotation.RestController;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import kr.or.connect.reservation.dto.Categories;
 import kr.or.connect.reservation.dto.PlusResult;
 import kr.or.connect.reservation.service.ReservationService;
+import kr.or.connect.reservation.service.impl.CategoryServiceImpl;
 
 @RestController
-@RequestMapping(path="/api/reservation")
+@RequestMapping(path="/api")
 public class ReservationApiController {
 	
 	@Autowired
 	private ReservationService reservationService;
+	
+	@Autowired
+	private CategoryServiceImpl categoryService;
 	
 	@ApiOperation(value="덧셈 테스트")
 	@ApiResponses({
@@ -35,4 +40,18 @@ public class ReservationApiController {
 		
 		return plusResult;
 	}
+	
+	@ApiOperation(value="카테고리 리스트 테스트")
+	@ApiResponses({
+		@ApiResponse(code = 200, message = "정상 처리"),
+		@ApiResponse(code = 500, message = "예외 발생")
+	})
+	@GetMapping("/categories")
+	public Categories getCategories() {
+		Categories categories = new Categories(categoryService.getCategories());
+		
+		System.out.println("categories");
+		return categories;
+	}
+	
 }
