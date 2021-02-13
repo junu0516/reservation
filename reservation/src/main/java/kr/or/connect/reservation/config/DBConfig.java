@@ -1,9 +1,5 @@
 package kr.or.connect.reservation.config;
 
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.Properties;
-
 import javax.sql.DataSource;
 
 import org.apache.commons.dbcp2.BasicDataSource;
@@ -21,13 +17,13 @@ import org.springframework.transaction.annotation.TransactionManagementConfigure
 @PropertySource("classpath:/application.properties")
 public class DBConfig implements TransactionManagementConfigurer {
 	
-	@Value("spring.datasource.driver-class-name")
+	@Value("${spring.datasource.driver-class-name}")
 	private String driverClassName;
-	@Value("spring.datasource.url")
+	@Value("${spring.datasource.url}")
 	private String url;
-	@Value("spring.datasource.username")
+	@Value("${spring.datasource.username}")
 	private String username;
-	@Value("spring.datasource.password")
+	@Value("${spring.datasource.password}")
 	private String password;
 	
 	@Bean

@@ -31,6 +31,7 @@ public class CategoryDao {
 	}
 	
 	public List<Category> getCategories(){
+		System.out.println(jdbc.query(SELECT_ALL, Collections.emptyMap(),rowMapper));
 		return jdbc.query(SELECT_ALL, Collections.emptyMap(),rowMapper);
 	}
 	
