@@ -3,7 +3,7 @@ package kr.or.connect.reservation.dao.sqls;
 public class CategoryDaoSqls {
 	public static final String SELECT_ALL = "select "
 											+ "category.id, category.name, "
-											+ "count(product.category_id) as count "
+											+ "count(display_info.id) as count "
 											+ "from category "
 											+ "join product on category.id = product.category_id "
 											+ "join display_info on product.id = display_info.product_id  "
