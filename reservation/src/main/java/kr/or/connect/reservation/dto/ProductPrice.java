@@ -1,6 +1,8 @@
 package kr.or.connect.reservation.dto;
 
-import java.time.LocalDate;
+import java.sql.Timestamp;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
 
 public class ProductPrice {
 	private int id;
@@ -8,23 +10,23 @@ public class ProductPrice {
 	private String priceTypeName;
 	private int price;
 	private double discountRate;
-	private LocalDate createDate;
-	private LocalDate modifyDate;
+	private String createDate;
+	private String modifyDate;
 	
 	public ProductPrice() {
 		
 	}
 
 	public ProductPrice(int id, int productId, String priceTypeName, int price, double discountRate,
-			LocalDate createDate, LocalDate modifyDate) {
+			Timestamp createDate, Timestamp modifyDate) {
 		super();
 		this.id = id;
 		this.productId = productId;
 		this.priceTypeName = priceTypeName;
 		this.price = price;
 		this.discountRate = discountRate;
-		this.createDate = createDate;
-		this.modifyDate = modifyDate;
+		this.createDate = createDate.toLocalDateTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+		this.modifyDate = modifyDate.toLocalDateTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 	}
 
 	public int getId() {
@@ -67,20 +69,20 @@ public class ProductPrice {
 		this.discountRate = discountRate;
 	}
 
-	public LocalDate getCreateDate() {
+	public String getCreateDate() {
 		return createDate;
 	}
 
-	public void setCreateDate(LocalDate createDate) {
-		this.createDate = createDate;
+	public void setCreateDate(Timestamp createDate) {
+		this.createDate = createDate.toLocalDateTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 	}
 
-	public LocalDate getModifyDate() {
+	public String getModifyDate() {
 		return modifyDate;
 	}
 
-	public void setModifyDate(LocalDate modifyDate) {
-		this.modifyDate = modifyDate;
+	public void setModifyDate(Timestamp modifyDate) {
+		this.modifyDate = modifyDate.toLocalDateTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 	}
 
 	@Override

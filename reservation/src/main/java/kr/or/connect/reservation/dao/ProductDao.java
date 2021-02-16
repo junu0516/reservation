@@ -63,4 +63,12 @@ public class ProductDao {
 		
 		return jdbc.query(SELECT_PRODUCTS_WITH_DISPLAY_ID, param, rowMapper);
 	}
+
+	public int getAverageScore(int displayId) {
+		
+		Map<String,?> param = Collections.singletonMap("displayId", displayId);
+		double result = jdbc.queryForObject(SELECT_AVERAGE_SCORE, param, Double.class);
+		
+		return (int)result;
+	}
 }

@@ -12,4 +12,6 @@ public interface ProductService {
 
 	public List<Product> getProducts(int displayId);
 
+	public int getAverageScore(int displayId);
+
 }

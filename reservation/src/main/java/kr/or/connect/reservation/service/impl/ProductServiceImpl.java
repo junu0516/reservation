@@ -34,4 +34,10 @@ public class ProductServiceImpl implements ProductService {
 		return productDao.getProducts(displayId);
 	}
 
+	@Override
+	@Transactional
+	public int getAverageScore(int displayId) {
+		return productDao.getAverageScore(displayId);
+	}
+
 }

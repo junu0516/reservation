@@ -1,6 +1,8 @@
 package kr.or.connect.reservation.dto;
 
+import java.sql.Timestamp;
 import java.time.*;
+import java.time.format.DateTimeFormatter;
 
 public class Product {
 	
@@ -18,8 +20,8 @@ public class Product {
 	private String tel;
 	private String homepage;
 	private String email;
-	private LocalDate createDate;
-	private LocalDate modifyDate;
+	private String createDate;
+	private String modifyDate;
 	private int fileId;
 	
 	public Product() {
@@ -28,7 +30,7 @@ public class Product {
 	
 	public Product(int id, int categoryId, int displayInfoId, String name, String description, String content,
 			String event, String openingHours, String placeName, String placeLot, String placeStreet, String tel,
-			String homepage, String email, LocalDate createDate, LocalDate modifyDate, int fileId) {
+			String homepage, String email, Timestamp createDate, Timestamp modifyDate, int fileId) {
 
 		this.id = id;
 		this.categoryId = categoryId;
@@ -44,8 +46,8 @@ public class Product {
 		this.tel = tel;
 		this.homepage = homepage;
 		this.email = email;
-		this.createDate = createDate;
-		this.modifyDate = modifyDate;
+		this.createDate = createDate.toLocalDateTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+		this.modifyDate = modifyDate.toLocalDateTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 		this.fileId = fileId;
 	}
 
@@ -163,20 +165,20 @@ public class Product {
 		this.email = email;
 	}
 
-	public LocalDate getCreateDate() {
+	public String getCreateDate() {
 		return createDate;
 	}
 
-	public void setCreateDate(LocalDate createDate) {
-		this.createDate = createDate;
+	public void setCreateDate(Timestamp createDate) {
+		this.createDate = createDate.toLocalDateTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 	}
 
-	public LocalDate getModifyDate() {
+	public String getModifyDate() {
 		return modifyDate;
 	}
 
-	public void setModifyDate(LocalDate modifyDate) {
-		this.modifyDate = modifyDate;
+	public void setModifyDate(Timestamp modifyDate) {
+		this.modifyDate = modifyDate.toLocalDateTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 	}
 
 	public int getFileId() {

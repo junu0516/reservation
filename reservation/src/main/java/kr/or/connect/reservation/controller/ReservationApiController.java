@@ -17,7 +17,9 @@ import kr.or.connect.reservation.dto.DisplayInfos;
 import kr.or.connect.reservation.dto.Products;
 import kr.or.connect.reservation.dto.Promotions;
 import kr.or.connect.reservation.service.CategoryService;
+import kr.or.connect.reservation.service.DisplayInfoImageService;
 import kr.or.connect.reservation.service.ProductImageService;
+import kr.or.connect.reservation.service.ProductPriceService;
 import kr.or.connect.reservation.service.ProductService;
 import kr.or.connect.reservation.service.PromotionService;
 
@@ -36,6 +38,12 @@ public class ReservationApiController {
 	
 	@Autowired
 	private ProductImageService productImageService;
+	
+	@Autowired
+	private DisplayInfoImageService displayInfoImageService;
+	
+	@Autowired
+	private ProductPriceService productPriceService;
 	
 	
 	@ApiOperation(value="카테고리 목록 구하기")
@@ -94,6 +102,9 @@ public class ReservationApiController {
 		
 		displayInfos.setProducts(productService.getProducts(displayId));
 		displayInfos.setProductImages(productImageService.getImages(displayId));
+		displayInfos.setDisplayInfoImages(displayInfoImageService.getImages(displayId));
+		displayInfos.setAvgScore((int)productService.getAverageScore(displayId));
+		displayInfos.setProductPrices(productPriceService.getPrices(displayId));
 		
 		return displayInfos;
 	}

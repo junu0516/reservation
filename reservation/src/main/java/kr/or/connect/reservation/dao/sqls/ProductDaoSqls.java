@@ -86,4 +86,11 @@ public class ProductDaoSqls {
 													+ "join product_image on product_image.product_id = product.id "
 													+ "where type='ma' "
 													+ "and display_info.id = :displayId";
+	
+	public static final String SELECT_AVERAGE_SCORE = "select "
+											+ "avg(reservation_user_comment.score) as avgScore "
+											+ "from reservation_user_comment "
+											+ "join reservation_info on reservation_user_comment.reservation_info_id = reservation_info.id "
+											+ "join display_info on display_info.id = reservation_info.display_info_id "
+											+ "where display_info.id = :displayId";
 }

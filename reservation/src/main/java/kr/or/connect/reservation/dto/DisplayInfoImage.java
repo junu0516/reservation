@@ -1,6 +1,8 @@
 package kr.or.connect.reservation.dto;
 
-import java.time.LocalDate;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class DisplayInfoImage {
 	private int id;
@@ -10,15 +12,15 @@ public class DisplayInfoImage {
 	private String saveFileName;
 	private String contentType;
 	private int deleteFlag;
-	private LocalDate createDate;
-	private LocalDate modifyDate;
+	private String createDate;
+	private String modifyDate;
 	
 	public DisplayInfoImage() {
 		
 	}
 
 	public DisplayInfoImage(int id, int displayInfoId, int fileId, String fileName, String saveFileName,
-			String contentType, int deleteFlag, LocalDate createDate, LocalDate modifyDate) {
+			String contentType, int deleteFlag, Timestamp createDate, Timestamp modifyDate) {
 		super();
 		this.id = id;
 		this.displayInfoId = displayInfoId;
@@ -27,8 +29,8 @@ public class DisplayInfoImage {
 		this.saveFileName = saveFileName;
 		this.contentType = contentType;
 		this.deleteFlag = deleteFlag;
-		this.createDate = createDate;
-		this.modifyDate = modifyDate;
+		this.createDate = createDate.toLocalDateTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+		this.modifyDate = modifyDate.toLocalDateTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 	}
 
 	public int getId() {
@@ -87,20 +89,21 @@ public class DisplayInfoImage {
 		this.deleteFlag = deleteFlag;
 	}
 
-	public LocalDate getCreateDate() {
+	public String getCreateDate() {
+		
 		return createDate;
 	}
 
-	public void setCreateDate(LocalDate createDate) {
-		this.createDate = createDate;
+	public void setCreateDate(Timestamp createDate) {
+		this.createDate = createDate.toLocalDateTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 	}
 
-	public LocalDate getModifyDate() {
+	public String getModifyDate() {
 		return modifyDate;
 	}
 
-	public void setModifyDate(LocalDate modifyDate) {
-		this.modifyDate = modifyDate;
+	public void setModifyDate(Timestamp modifyDate) {
+		this.modifyDate = modifyDate.toLocalDateTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 	}
 
 	@Override
