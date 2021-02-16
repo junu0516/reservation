@@ -10,4 +10,6 @@ public interface ProductService {
 	
 	public int getTotalCount(int categoryId);
 
+	public List<Product> getProducts(int displayId);
+
 }

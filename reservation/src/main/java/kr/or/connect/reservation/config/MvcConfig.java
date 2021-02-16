@@ -39,7 +39,7 @@ public class MvcConfig implements WebMvcConfigurer {
 	
 	private ApiInfo apiInfo() {
 		Contact contact = new Contact("이준우", "https://www.edwith.org", "junu0516@yonsei.ac.kr");
-		ApiInfo apiInfo = new ApiInfo("Swagger Sample", "APIs Sample", "Sample Doc 0.1v", "", contact, "This sentence will be display.", "/");
+		ApiInfo apiInfo = new ApiInfo("Swagger Sample", "APIs Sample", "Sample Doc 0.1v", "", contact, "This sentence will be displayed.", "/");
 		return apiInfo;
 	}
 	

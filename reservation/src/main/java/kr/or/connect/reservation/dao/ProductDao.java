@@ -54,4 +54,13 @@ public class ProductDao {
 			return jdbc.queryForObject(SELECT_COUNT,paramForCategoryId,Integer.class);
 		}
 	}
+
+	public List<Product> getProducts(int displayId) {
+		
+		
+		Map<String,Integer> param = new HashMap<>();
+		param.put("displayId", displayId);
+		
+		return jdbc.query(SELECT_PRODUCTS_WITH_DISPLAY_ID, param, rowMapper);
+	}
 }

@@ -28,4 +28,10 @@ public class ProductServiceImpl implements ProductService {
 		return productDao.getTotalCount(categoryId);
 	}
 
+	@Override
+	@Transactional
+	public List<Product> getProducts(int displayId) {
+		return productDao.getProducts(displayId);
+	}
+
 }
