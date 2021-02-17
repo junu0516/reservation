@@ -24,11 +24,11 @@ public class ProductDao {
 	private RowMapper<Product> rowMapper = BeanPropertyRowMapper.newInstance(Product.class);
 	
 	public ProductDao(DataSource dataSource) {
-		
 		this.jdbc = new NamedParameterJdbcTemplate(dataSource);
 		this.insertAction = new SimpleJdbcInsert(dataSource)
 								.withTableName("product")
 								.usingGeneratedKeyColumns("id");
+	
 	}
 	
 	public List<Product> getProducts(int categoryId, int start){

@@ -16,12 +16,14 @@ import kr.or.connect.reservation.dto.Categories;
 import kr.or.connect.reservation.dto.DisplayInfos;
 import kr.or.connect.reservation.dto.Products;
 import kr.or.connect.reservation.dto.Promotions;
+import kr.or.connect.reservation.dto.ReservationCommentInfos;
 import kr.or.connect.reservation.service.CategoryService;
 import kr.or.connect.reservation.service.DisplayInfoImageService;
 import kr.or.connect.reservation.service.ProductImageService;
 import kr.or.connect.reservation.service.ProductPriceService;
 import kr.or.connect.reservation.service.ProductService;
 import kr.or.connect.reservation.service.PromotionService;
+import kr.or.connect.reservation.service.ReservationCommentService;
 
 @RestController
 @RequestMapping(path="/api")
@@ -45,6 +47,9 @@ public class ReservationApiController {
 	@Autowired
 	private ProductPriceService productPriceService;
 	
+	@Autowired
+	private ReservationCommentService reservationCommentService;
+	
 	
 	@ApiOperation(value="카테고리 목록 구하기")
 	@ApiResponses({
@@ -65,7 +70,7 @@ public class ReservationApiController {
 		@ApiResponse(code = 200, message = "정상 처리"),
 		@ApiResponse(code = 500, message = "예외 발생")
 	})
-	@GetMapping("/displayinfos")
+	@GetMapping("/products")
 	public Products getProducts(@RequestParam(name="categoryId",required=false,defaultValue="0")int categoryId, @RequestParam(name="start", required=false, defaultValue="0")int start) {
 		Products products = new Products();
 		
@@ -107,5 +112,20 @@ public class ReservationApiController {
 		displayInfos.setProductPrices(productPriceService.getPrices(displayId));
 		
 		return displayInfos;
+	}
+	
+	@ApiOperation(value="댓글 목록 구하기")
+	@ApiResponses({
+		@ApiResponse(code = 200, message = "정상 처리"),
+		@ApiResponse(code = 500, message = "예외 발생")
+	})
+	@GetMapping("/displayinfos")
+	public ReservationCommentInfos getComments(@RequestParam(name="productId", required=false, defaultValue="0")int productId, @RequestParam(name="start", required=false, defaultValue="0")int start) {
+		
+		ReservationCommentInfos reservationCommentInfos = new ReservationCommentInfos();
+		reservationCommentInfos.setTotalCount(reservationCommentService.getTotalCount(productId));
+		reservationCommentInfos.setReservationuserComments(reservationCommentService.getReservationComments(productId,start));
+		
+		return reservationCommentInfos;
 	}
 }
