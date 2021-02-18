@@ -50,8 +50,28 @@ public class Product {
 		this.modifyDate = modifyDate.toLocalDateTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 		this.fileId = fileId;
 	}
+	
 
-
+	public Product(int id, int categoryId, int displayInfoId, String name, String description, String content,
+			String event, String openingHours, String placeName, String placeLot, String placeStreet, String tel,
+			String homepage, String email, int fileId) {
+		super();
+		this.id = id;
+		this.categoryId = categoryId;
+		this.displayInfoId = displayInfoId;
+		this.name = name;
+		this.description = description;
+		this.content = content;
+		this.event = event;
+		this.openingHours = openingHours;
+		this.placeName = placeName;
+		this.placeLot = placeLot;
+		this.placeStreet = placeStreet;
+		this.tel = tel;
+		this.homepage = homepage;
+		this.email = email;
+		this.fileId = fileId;
+	}
 
 	public int getId() {
 		return id;

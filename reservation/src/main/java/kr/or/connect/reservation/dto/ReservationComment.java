@@ -1,7 +1,5 @@
 package kr.or.connect.reservation.dto;
 
-import java.util.List;
-
 public class ReservationComment {
 	
 	private int id;
