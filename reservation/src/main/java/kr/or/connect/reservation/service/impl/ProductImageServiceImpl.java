@@ -17,7 +17,6 @@ public class ProductImageServiceImpl implements ProductImageService {
 	ProductImageDao productImageDao;
 	
 	@Override
-	@Transactional
 	public List<ProductImage> getImages(int displayId) {
 		return productImageDao.getImages(displayId);
 	}

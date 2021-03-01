@@ -17,7 +17,6 @@ public class DisplayInfoImageServiceImpl implements DisplayInfoImageService {
 	DisplayInfoImageDao displayInfoImageDao;
 	
 	@Override
-	@Transactional
 	public List<DisplayInfoImage> getImages(int displayId) {
 		return displayInfoImageDao.getImage(displayId);
 	}

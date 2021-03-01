@@ -17,14 +17,12 @@ public class ReservationCommentServiceImpl implements ReservationCommentService 
 	ReservationCommentDao reservationCommentDao;
 	
 	@Override
-	@Transactional
 	public int getTotalCount(int productId) {
 		
 		return reservationCommentDao.getTotalCount(productId);
 	}
 
 	@Override
-	@Transactional
 	public List<ReservationComment> getReservationComments(int productId, int start) {
 	
 		return reservationCommentDao.getReservationComments(productId,start);

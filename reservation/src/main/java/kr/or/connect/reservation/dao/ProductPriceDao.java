@@ -20,15 +20,12 @@ import static kr.or.connect.reservation.dao.sqls.ProductPriceDaoSqls.*;
 public class ProductPriceDao {
 	
 	private NamedParameterJdbcTemplate jdbc;
-	private SimpleJdbcInsert insertAction;
 	private RowMapper<ProductPrice> rowMapper = BeanPropertyRowMapper.newInstance(ProductPrice.class);
 
 	public ProductPriceDao(DataSource dataSource) {
-		this.jdbc = new NamedParameterJdbcTemplate(dataSource);
-		this.insertAction = new SimpleJdbcInsert(dataSource)
-								.withTableName("product_price")
-								.usingGeneratedKeyColumns("id");		
+		this.jdbc = new NamedParameterJdbcTemplate(dataSource);	
 	}
+	
 	public List<ProductPrice> getPrices(int displayId) {
 		
 		Map<String,Integer> param = new HashMap<>();

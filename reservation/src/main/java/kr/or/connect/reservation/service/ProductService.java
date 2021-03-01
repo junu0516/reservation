@@ -6,12 +6,12 @@ import kr.or.connect.reservation.dto.Product;
 
 public interface ProductService {
 	
-	public List<Product> getProducts(int categoryId, int start);
+	List<Product> getProducts(int categoryId, int start);
 	
-	public int getTotalCount(int categoryId);
+	int getTotalCount(int categoryId);
 
-	public List<Product> getProducts(int displayId);
+	List<Product> getProducts(int displayId);
 
-	public int getAverageScore(int displayId);
+	int getAverageScore(int displayId);
 
 }

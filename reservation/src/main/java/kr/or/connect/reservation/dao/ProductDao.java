@@ -20,14 +20,10 @@ import javax.sql.DataSource;
 public class ProductDao {
 	
 	private NamedParameterJdbcTemplate jdbc;
-	private SimpleJdbcInsert insertAction;
 	private RowMapper<Product> rowMapper = BeanPropertyRowMapper.newInstance(Product.class);
 	
 	public ProductDao(DataSource dataSource) {
 		this.jdbc = new NamedParameterJdbcTemplate(dataSource);
-		this.insertAction = new SimpleJdbcInsert(dataSource)
-								.withTableName("product")
-								.usingGeneratedKeyColumns("id");
 	
 	}
 	

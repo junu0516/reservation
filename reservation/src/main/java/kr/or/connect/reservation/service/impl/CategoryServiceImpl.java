@@ -17,7 +17,6 @@ public class CategoryServiceImpl implements CategoryService {
 	CategoryDao categoryDao;
 	
 	@Override
-	@Transactional
 	public List<Category> getCategories() {
 		
 		return categoryDao.getCategories();

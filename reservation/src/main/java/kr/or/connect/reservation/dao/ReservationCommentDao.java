@@ -21,14 +21,10 @@ import java.util.Map;
 public class ReservationCommentDao {
 
 	private NamedParameterJdbcTemplate jdbc;
-	private SimpleJdbcInsert insertAction;
 	private RowMapper<ReservationComment> rowMapper = BeanPropertyRowMapper.newInstance(ReservationComment.class);
 	
 	public ReservationCommentDao(DataSource dataSource) {
 		this.jdbc = new NamedParameterJdbcTemplate(dataSource);
-		this.insertAction = new SimpleJdbcInsert(dataSource)
-								.withTableName("reservation_user_comment")
-								.usingGeneratedKeyColumns("id");
 	}
 	
 	public int getTotalCount(int productId) {

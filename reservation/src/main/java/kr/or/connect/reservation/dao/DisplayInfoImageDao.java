@@ -20,14 +20,10 @@ import static kr.or.connect.reservation.dao.sqls.DisplayInfoImageDaoSqls.*;
 public class DisplayInfoImageDao {
 
 	private NamedParameterJdbcTemplate jdbc;
-	private SimpleJdbcInsert insertAction;
 	private RowMapper<DisplayInfoImage> rowMapper = BeanPropertyRowMapper.newInstance(DisplayInfoImage.class);
 
 	public DisplayInfoImageDao(DataSource dataSource) {
-		this.jdbc = new NamedParameterJdbcTemplate(dataSource);
-		this.insertAction = new SimpleJdbcInsert(dataSource)
-								.withTableName("display_info_image")
-								.usingGeneratedKeyColumns("id");		
+		this.jdbc = new NamedParameterJdbcTemplate(dataSource);	
 	}
 	
 	public List<DisplayInfoImage> getImage(int displayId) {

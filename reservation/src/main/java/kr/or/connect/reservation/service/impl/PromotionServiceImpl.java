@@ -17,14 +17,12 @@ public class PromotionServiceImpl implements PromotionService {
 	PromotionDao promotionDao;
 	
 	@Override
-	@Transactional
 	public List<Promotion> getPromotions() {
 		
 		return promotionDao.getPromotions();
 	}
 
 	@Override
-	@Transactional
 	public int getPromotionCount() {
 		
 		return promotionDao.getPromotionCount();

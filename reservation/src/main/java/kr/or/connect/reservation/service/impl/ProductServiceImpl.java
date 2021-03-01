@@ -17,25 +17,21 @@ public class ProductServiceImpl implements ProductService {
 	ProductDao productDao;
 
 	@Override
-	@Transactional
 	public List<Product> getProducts(int categoryId, int start) {
 		return productDao.getProducts(categoryId,start);
 	}
 
 	@Override
-	@Transactional
 	public int getTotalCount(int categoryId) {
 		return productDao.getTotalCount(categoryId);
 	}
 
 	@Override
-	@Transactional
 	public List<Product> getProducts(int displayId) {
 		return productDao.getProducts(displayId);
 	}
 
 	@Override
-	@Transactional
 	public int getAverageScore(int displayId) {
 		return productDao.getAverageScore(displayId);
 	}

@@ -20,15 +20,11 @@ import java.util.List;
 public class CategoryDao {
 	
 	private NamedParameterJdbcTemplate jdbc;
-	private SimpleJdbcInsert insertAction;
 	private RowMapper<Category> rowMapper = BeanPropertyRowMapper.newInstance(Category.class);
 	  
 	public CategoryDao(DataSource dataSource) {
 		
 		this.jdbc = new NamedParameterJdbcTemplate(dataSource);
-		this.insertAction = new SimpleJdbcInsert(dataSource)
-								.withTableName("category")
-								.usingGeneratedKeyColumns("id");
 	}
 	
 	public List<Category> getCategories(){

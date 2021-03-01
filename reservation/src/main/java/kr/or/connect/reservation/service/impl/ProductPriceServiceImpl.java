@@ -17,7 +17,6 @@ public class ProductPriceServiceImpl implements ProductPriceService {
 	ProductPriceDao productPriceDao;
 	
 	@Override
-	@Transactional
 	public List<ProductPrice> getPrices(int displayId) {
 		
 		return productPriceDao.getPrices(displayId);

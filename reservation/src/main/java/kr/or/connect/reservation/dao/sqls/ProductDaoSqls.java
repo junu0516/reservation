@@ -88,7 +88,7 @@ public class ProductDaoSqls {
 													+ "and display_info.id = :displayId";
 	
 	public static final String SELECT_AVERAGE_SCORE = "select "
-											+ "avg(reservation_user_comment.score) as avgScore "
+											+ "ifnull(avg(reservation_user_comment.score),0) as avgScore "
 											+ "from reservation_user_comment "
 											+ "join reservation_info on reservation_user_comment.reservation_info_id = reservation_info.id "
 											+ "join display_info on display_info.id = reservation_info.display_info_id "

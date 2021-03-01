@@ -6,7 +6,7 @@ import kr.or.connect.reservation.dto.Promotion;
 
 public interface PromotionService {
 
-	public List<Promotion> getPromotions();
+	List<Promotion> getPromotions();
 	
-	public int getPromotionCount();
+	int getPromotionCount();
 }
