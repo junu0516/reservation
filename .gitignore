@@ -2,6 +2,9 @@
 # Created by https://www.toptal.com/developers/gitignore/api/eclipse,maven,java
 # Edit at https://www.toptal.com/developers/gitignore?templates=eclipse,maven,java
 
+### Servers ###
+Servers/
+
 ### Eclipse ###
 .metadata
 bin/
