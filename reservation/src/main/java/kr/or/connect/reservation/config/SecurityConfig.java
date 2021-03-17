@@ -32,20 +32,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-
+		
 		http
 			.csrf().disable()
 			.authorizeRequests()
-			.antMatchers("/api/categories","/api/displayinfos","/api/displayinfos/{displayId}","/api/products","/api/promitions").permitAll()
-			.antMatchers("/api/reservationInfos").hasRole("ROLE_USER")
+			.antMatchers("/","/main","/api/categories","/api/displayinfos","/api/displayinfos/{displayId}","/api/products","/api/promitions").permitAll()
+			.antMatchers("/api/reservationInfos").hasRole("USER")
 			.anyRequest().authenticated()
 			.and()
 				.formLogin()
-				.loginPage("/members/loginform")
-				.usernameParameter("userId")
+				.loginPage("/main")
+				.usernameParameter("id")
 				.passwordParameter("password")
-				.loginProcessingUrl("/authenticate")
-				.failureForwardUrl("/members/loginerror?login_error=1")
+				.loginProcessingUrl("/reservation/authenticate")
+				.failureForwardUrl("/failure")
 				.defaultSuccessUrl("/",true)
 				.permitAll()
 			.and()

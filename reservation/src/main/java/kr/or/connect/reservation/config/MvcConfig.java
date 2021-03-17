@@ -25,13 +25,28 @@ public class MvcConfig implements WebMvcConfigurer {
 		configurer.enable();
 	}
 	
+	
+	
+	@Override
+	public void configureViewResolvers(ViewResolverRegistry registry) {
+		
+		registry.jsp("/WEB-INF/view/", ".jsp");
+	}
+	
+	
+	@Override
+	public void addViewControllers(ViewControllerRegistry registry) {
+		
+		registry.addRedirectViewController("/", "/main");
+	}
+
 	@Bean
 	public Docket api() {
 		System.out.println("api 메소드 실행");
 		return new Docket(DocumentationType.SWAGGER_2)
 			.select()
-			.apis(RequestHandlerSelectors.any()) // // 현재 RequestMapping으로 할당된 모든 URL 리스트를 추출
-			.paths(PathSelectors.ant("/api/**"))// PathSelectors.any() 를 할경우 모든 경로가 다 사용된다. RestController가 아닌 것 까지 사용된다.
+			.apis(RequestHandlerSelectors.any())
+			.paths(PathSelectors.ant("/api/**"))
 			.build()
 			.apiInfo(apiInfo())
 			.useDefaultResponseMessages(false);		
