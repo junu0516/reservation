@@ -25,6 +25,7 @@ public class UserDao {
 	
 	public User getUser(String userId) {
 		
+		System.out.println("DB에서 유저정보 접근 시도");
 		Map<String,String> param = new HashMap<>();
 		param.put("userId", userId);
 
