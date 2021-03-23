@@ -17,8 +17,8 @@
 		<h1>로그인 페이지</h1>
 		<form method="post" action="/reservation/authenticate">
 			<div>
-				<label>ID : </label>
-				<input type="text" name="id">
+				<label>Email : </label>
+				<input type="text" name="userEmail">
 			</div>
 			
 			<div>

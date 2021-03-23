@@ -10,7 +10,6 @@ public class WebAppInitializer extends  AbstractAnnotationConfigDispatcherServle
 	
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		System.out.println("get root config classes");
 		return new Class<?>[] {ApplicationConfig.class, SecurityConfig.class};
 	}
 

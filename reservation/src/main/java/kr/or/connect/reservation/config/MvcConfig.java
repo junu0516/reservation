@@ -25,8 +25,6 @@ public class MvcConfig implements WebMvcConfigurer {
 		configurer.enable();
 	}
 	
-	
-	
 	@Override
 	public void configureViewResolvers(ViewResolverRegistry registry) {
 		
@@ -42,7 +40,6 @@ public class MvcConfig implements WebMvcConfigurer {
 
 	@Bean
 	public Docket api() {
-		System.out.println("api 메소드 실행");
 		return new Docket(DocumentationType.SWAGGER_2)
 			.select()
 			.apis(RequestHandlerSelectors.any())
