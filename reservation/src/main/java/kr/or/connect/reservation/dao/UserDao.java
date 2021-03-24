@@ -23,12 +23,12 @@ public class UserDao {
 		this.jdbc = new NamedParameterJdbcTemplate(dataSource);
 	}
 	
-	public User getUser(String userId) {
+	public User getUser(String userEmail) {
 		
-		System.out.println("DB에서 유저정보 접근 시도");
+		System.out.println("DB에서 유저정보 접근 시도 / "+"userEmail : "+userEmail);
 		Map<String,String> param = new HashMap<>();
-		param.put("userId", userId);
-
+		param.put("userEmail", userEmail);
+		
 		return jdbc.queryForObject(SELECT_USER, param,rowMapper);
 	}
 }

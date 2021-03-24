@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 import kr.or.connect.reservation.service.CustomUserDetailsService;
 
@@ -32,7 +33,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		
+		System.out.println("SecurityConfig에서 configure 메소드 호출하여 인증/인가 설정");
 		http
 			.csrf().disable()
 			.authorizeRequests()
@@ -44,7 +45,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.loginPage("/main")
 				.usernameParameter("id")
 				.passwordParameter("password")
-				.loginProcessingUrl("/reservation/authenticate")
+				.loginProcessingUrl("/authenticate")
 				.failureForwardUrl("/failure")
 				.defaultSuccessUrl("/",true)
 				.permitAll()

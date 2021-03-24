@@ -23,9 +23,11 @@ public class CustomUserDetailsService implements UserDetailsService {
 	UserDbService userDbService;
 
 	@Override
-	public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
-		
-		UserEntity userEntity = userDbService.getUser(userId);
+	public UserDetails loadUserByUsername(String userEmail) throws UsernameNotFoundException {
+		System.out.println("CustomUserDetailsService 호출 / userEmail : "+userEmail);
+		UserEntity userEntity = userDbService.getUser(userEmail);
+		System.out.println("userEntity 생성");
+		System.out.println("userEntity : "+userEntity);
 		if(userEntity == null) {
 			throw new UsernameNotFoundException("해당 사용자를 찾을 수 없습니다.");
 		}
@@ -34,7 +36,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 		customUserDetails.setUsername(userEntity.getId());
 		customUserDetails.setPassword(userEntity.getPassword());
 		
-		List<UserRoleEntity> userRoles = userDbService.getUserRoles(userId);
+		List<UserRoleEntity> userRoles = userDbService.getUserRoles(userEmail);
 		List<GrantedAuthority> authorities = new ArrayList<>();
 		if(userRoles != null) {
 			for(UserRoleEntity userRole : userRoles) {

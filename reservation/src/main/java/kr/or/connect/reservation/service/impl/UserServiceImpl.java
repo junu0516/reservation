@@ -26,11 +26,12 @@ public class UserServiceImpl implements UserService {
 	
 	@Override
 	@Transactional
-	public UserEntity getUser(String userId) {
+	public UserEntity getUser(String userEmail) {
 		
-		User user = userDao.getUser(userId);
-		
-		return new UserEntity(user.getUserId(),user.getPassword());
+		User user = userDao.getUser(userEmail);
+		System.out.println("user 생성");
+		System.out.println("user : "+user);
+		return new UserEntity(user.getUserEmail(),user.getPassword());
 	}
 
 	@Override
