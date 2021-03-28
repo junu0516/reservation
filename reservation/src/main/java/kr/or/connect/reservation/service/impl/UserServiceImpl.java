@@ -18,14 +18,11 @@ import kr.or.connect.reservation.service.security.UserRoleEntity;
 @Service
 public class UserServiceImpl implements UserService {
 	
+	@Autowired
 	UserDao userDao;
-	UserRoleDao userRoleDao;
 	
-	public UserServiceImpl(UserDao userDao, UserRoleDao userRoleDao) {
-		
-		this.userDao = userDao;
-		this.userRoleDao = userRoleDao;
-	}
+	@Autowired
+	UserRoleDao userRoleDao;
 	
 	@Override
 	@Transactional

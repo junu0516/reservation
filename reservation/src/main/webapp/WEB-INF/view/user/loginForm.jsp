@@ -12,7 +12,6 @@
     <div>
       <div>
         <form method="post" action="/reservation/auth">
-          <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> 
           <div>
             <label>ID</label>
             <input type="text" name="userEmail">

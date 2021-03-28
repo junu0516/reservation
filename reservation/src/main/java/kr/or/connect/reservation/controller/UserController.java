@@ -29,9 +29,9 @@ public class UserController {
 	}
 	
 	@GetMapping("/failure")
-	public String showFailurePage(@RequestParam("error_code")String errorCode) {
+	public String showFailurePage() {
 		
-		System.out.println("로그인 실패 / 에러 코드 : "+errorCode);
+		System.out.println("로그인 실패 ");
 		return "user/failure";
 	}
 
