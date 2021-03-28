@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>로그인 실패</h1>
+	<h1>로그인 실패</h1><br>
+	<a href="main">돌아가기</a>
 </body>
 </html>
