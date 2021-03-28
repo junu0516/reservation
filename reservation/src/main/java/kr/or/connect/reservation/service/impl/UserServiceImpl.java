@@ -18,16 +18,19 @@ import kr.or.connect.reservation.service.security.UserRoleEntity;
 @Service
 public class UserServiceImpl implements UserService {
 	
-	@Autowired
 	UserDao userDao;
-	
-	@Autowired
 	UserRoleDao userRoleDao;
+	
+	public UserServiceImpl(UserDao userDao, UserRoleDao userRoleDao) {
+		
+		this.userDao = userDao;
+		this.userRoleDao = userRoleDao;
+	}
 	
 	@Override
 	@Transactional
 	public UserEntity getUser(String userEmail) {
-		
+		System.out.println("userServiceImpl 진입");
 		User user = userDao.getUser(userEmail);
 		System.out.println("user 생성");
 		System.out.println("user : "+user);
@@ -35,6 +38,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	@Transactional
 	public List<UserRoleEntity> getUserRoles(String userId) {
 		List<UserRole> userRoles = userRoleDao.getUserRoles(userId);
 		List<UserRoleEntity> userRoleEntities = new ArrayList<>();

@@ -7,23 +7,23 @@ public class User {
 	private String password;
 	private String userEmail;
 	private String userPhone;
-	private String userCreateDate;
-	private String userModifyDate;
+	private String createDate;
+	private String modifyDate;
 	
 	public User() {
 		
 	}
 
-	public User(String userId, String userName, String password, String userEmail, String userPhone,
-			String userCreateDate, String userModifyDate) {
+	public User(String userId, String userName, String password, String userEmail, String userPhone, String createDate,
+			String modifyDate) {
 		super();
 		this.userId = userId;
 		this.userName = userName;
 		this.password = password;
 		this.userEmail = userEmail;
 		this.userPhone = userPhone;
-		this.userCreateDate = userCreateDate;
-		this.userModifyDate = userModifyDate;
+		this.createDate = createDate;
+		this.modifyDate = modifyDate;
 	}
 
 	public String getUserId() {
@@ -66,27 +66,27 @@ public class User {
 		this.userPhone = userPhone;
 	}
 
-	public String getUserCreateDate() {
-		return userCreateDate;
+	public String getCreateDate() {
+		return createDate;
 	}
 
-	public void setUserCreateDate(String userCreateDate) {
-		this.userCreateDate = userCreateDate;
+	public void setCreateDate(String createDate) {
+		this.createDate = createDate;
 	}
 
-	public String getUserModifyDate() {
-		return userModifyDate;
+	public String getModifyDate() {
+		return modifyDate;
 	}
 
-	public void setUserModifyDate(String userModifyDate) {
-		this.userModifyDate = userModifyDate;
+	public void setModifyDate(String modifyDate) {
+		this.modifyDate = modifyDate;
 	}
 
 	@Override
 	public String toString() {
 		return "User [userId=" + userId + ", userName=" + userName + ", password=" + password + ", userEmail="
-				+ userEmail + ", userPhone=" + userPhone + ", userCreateDate=" + userCreateDate + ", userModifyDate="
-				+ userModifyDate + "]";
+				+ userEmail + ", userPhone=" + userPhone + ", createDate=" + createDate + ", modifyDate=" + modifyDate
+				+ "]";
 	}
 	
 }

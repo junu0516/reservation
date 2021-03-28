@@ -28,6 +28,7 @@ public class UserDao {
 		System.out.println("DB에서 유저정보 접근 시도 / "+"userEmail : "+userEmail);
 		Map<String,String> param = new HashMap<>();
 		param.put("userEmail", userEmail);
+		System.out.println("param 추가");
 		
 		return jdbc.queryForObject(SELECT_USER, param,rowMapper);
 	}
