@@ -24,8 +24,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String userEmail) throws UsernameNotFoundException {
-		System.out.println("CustomUserDetailsService 호출 / userEmail : "+userEmail);
-		System.out.println(userDbService);
+
 		UserEntity userEntity = userDbService.getUser(userEmail);
 		System.out.println("userEntity 생성");
 		System.out.println("userEntity : "+userEntity);

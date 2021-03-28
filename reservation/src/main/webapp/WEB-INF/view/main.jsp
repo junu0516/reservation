@@ -11,7 +11,13 @@
 </head>
 <body>
 	<h1>Main Page</h1>
-	<a href="login">로그인하러 가기</a>
+	<c:if test="${userEmail != null}">
+		현재 ${userEmail}님이 로그인하신 상태입니다.<br>
+		<a href="logout">로그아웃</a>
+	</c:if>
+	<c:if test="${userEmail == null}">
+		<a href="loginForm">로그인하러 가기</a>
+	</c:if>
 	
 </body>
 </html>
