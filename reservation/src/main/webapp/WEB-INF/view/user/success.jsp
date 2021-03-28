@@ -4,14 +4,11 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-	<h1>Main Page</h1>
-	<a href="login">로그인하러 가기</a>
-	
-</body>
+  <html>
+    <head>
+      <title>로그인 </title>
+    </head>
+  <body>
+    <h1>로그인 성공</h1>
+  </body>
 </html>
