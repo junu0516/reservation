@@ -33,7 +33,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		System.out.println("SecurityConfig에서 configure 메소드 호출하여 인증/인가 설정");
+	
 		http
 			.csrf().disable()
 			.authorizeRequests()
@@ -47,7 +47,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.passwordParameter("password")
 				.loginProcessingUrl("/auth")
 				.failureForwardUrl("/failure?error_code=1")
-				.defaultSuccessUrl("/success",true)
+				.defaultSuccessUrl("/",true)
 				.permitAll()
 			.and()
 				.logout()
