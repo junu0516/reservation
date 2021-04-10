@@ -29,7 +29,6 @@ public class UserServiceImpl implements UserService {
 	public UserEntity getUser(String userEmail) {
 		
 		User user = userDao.getUser(userEmail);
-		System.out.println("user 생성");
 		System.out.println("user : "+user);
 		
 		return new UserEntity(user.getUserEmail(),user.getPassword());
@@ -46,6 +45,14 @@ public class UserServiceImpl implements UserService {
 		}
 		
 		return userRoleEntities;
+	}
+
+	@Override
+	public User getUserByEmail(String loginEmail) {
+		
+		User user = userDao.getUser(loginEmail);
+		
+		return user;
 	}
 
 }
