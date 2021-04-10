@@ -25,6 +25,7 @@ public class UserController {
 	@GetMapping("/loginForm")
 	public String showLoginPage() {
 		
+		System.out.println("로그인 페이지 호출");
 		return "user/loginForm";
 	}
 	
