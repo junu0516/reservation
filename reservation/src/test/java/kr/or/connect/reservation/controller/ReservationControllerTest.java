@@ -2,8 +2,8 @@ package kr.or.connect.reservation.controller;
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 
 import java.sql.Timestamp;
@@ -92,10 +92,22 @@ public class ReservationControllerTest {
 		priceInfo.setCount(2);
 		
 		when(reservationService.insertReservationInfo(reservationInsertion)).thenReturn(reservationInfo);
+<<<<<<< Updated upstream
 		
 		RequestBuilder requestBuilder = MockMvcRequestBuilders.post("/api/reservationinfos");
 		mockMvc.perform(requestBuilder).andExpect(status().isOk()).andDo(print());
 		
+=======
+		RequestBuilder requestBuilder = MockMvcRequestBuilders.post("/api/reservationInfos")
+										.content(content)
+										.contentType(MediaType.APPLICATION_JSON);
+		
+		mockMvc.perform(requestBuilder)
+			   .andExpect(status().isOk())
+			   .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+			   .andDo(print());
+	
+>>>>>>> Stashed changes
 		verify(reservationService).insertReservationInfo(reservationInsertion);
 		
 	}
