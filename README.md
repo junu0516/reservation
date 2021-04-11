@@ -11,3 +11,7 @@
     - Mock 객체와 JUnit를 활용한 RestController 테스트
 
 - 프로젝트를 수행하면서 발생한 이슈의 해결과정은 [여기](https://github.com/junu0516/reservation/issues)를 확인해주세요
+- Git 활용 방식
+    - 작업 내요에 따라 브랜치명을 아래의 양식대로 달리함
+    - feature*** : 새로운 기능/요구사항에 대한 구현을 추가할 경우
+    - enhancement*** : 새로운 기능 추가 후 오류가 발생한 부분을 해결한 경우 
