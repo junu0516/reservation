@@ -46,6 +46,7 @@ public class ReservationDao {
 		params.put("product_id", String.valueOf(reservationInsertion.getProductId()));
 		params.put("display_info_id", String.valueOf(reservationInsertion.getDisplayInfoId()));
 		params.put("user_id", String.valueOf(reservationInsertion.getUserId()));
+		params.put("cancel_flag", 0);
 		params.put("reservation_date", reservationInsertion.getReservationYearMonthDay());
 		params.put("create_date", Timestamp.valueOf(LocalDateTime.now()));
 		params.put("modify_date", Timestamp.valueOf(LocalDateTime.now()));
