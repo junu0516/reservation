@@ -4,8 +4,8 @@ import java.util.List;
 
 public interface UserDbService {
 	
-	UserEntity getUser(String userId);
+	UserEntity getUser(String userEmail);
 	
-	List<UserRoleEntity> getUserRoles(String userId);
+	List<UserRoleEntity> getUserRoles(String userEmail);
 	
 }

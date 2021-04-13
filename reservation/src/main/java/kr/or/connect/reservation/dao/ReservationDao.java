@@ -4,6 +4,7 @@ package kr.or.connect.reservation.dao;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.sql.DataSource;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Repository;
 
 import kr.or.connect.reservation.dto.Price;
 import kr.or.connect.reservation.dto.PriceInsertion;
+import kr.or.connect.reservation.dto.Reservation;
 import kr.or.connect.reservation.dto.ReservationInfo;
 import kr.or.connect.reservation.dto.ReservationInsertion;
 
@@ -29,6 +31,7 @@ public class ReservationDao {
 	private SimpleJdbcInsert reservationInsertAction;
 	private RowMapper<Price> rowMapperForPriceInfo = BeanPropertyRowMapper.newInstance(Price.class);
 	private RowMapper<ReservationInfo> rowMapperForReservationInfo = BeanPropertyRowMapper.newInstance(ReservationInfo.class);
+	private RowMapper<Reservation> rowMapperForReservation = BeanPropertyRowMapper.newInstance(Reservation.class);
 	
 	public ReservationDao(DataSource dataSource) {
 		this.jdbc = new NamedParameterJdbcTemplate(dataSource);
@@ -42,10 +45,13 @@ public class ReservationDao {
 
 	public int insertReservationInfo(ReservationInsertion reservationInsertion) {
 		
+		System.out.println("dao");
+		
 		Map<String,Object> params = new HashMap<>();
 		params.put("product_id", String.valueOf(reservationInsertion.getProductId()));
 		params.put("display_info_id", String.valueOf(reservationInsertion.getDisplayInfoId()));
 		params.put("user_id", String.valueOf(reservationInsertion.getUserId()));
+		params.put("cancel_flag", 0);
 		params.put("reservation_date", reservationInsertion.getReservationYearMonthDay());
 		params.put("create_date", Timestamp.valueOf(LocalDateTime.now()));
 		params.put("modify_date", Timestamp.valueOf(LocalDateTime.now()));
@@ -76,6 +82,22 @@ public class ReservationDao {
 		param.put("id", reservationInfoId);
 		
 		return jdbc.queryForObject(SELECT_RESERVATION_INFO, param, rowMapperForReservationInfo);
+	}
+
+	public List<Reservation> selectReservations(int userId) {
+		
+		Map<String, Object> param = new HashMap<>();
+		param.put("userId", userId);
+		
+		return jdbc.query(SELECT_ALL_RESERVATIONS,param,rowMapperForReservation);
+	}
+
+	public int cancelReservation(Integer id) {
+		
+		Map<String, Object> param = new HashMap<>();
+		param.put("id", id);
+		
+		return jdbc.update(UPDATE_CANCELING_RESERVATION,param);
 	}
 
 	

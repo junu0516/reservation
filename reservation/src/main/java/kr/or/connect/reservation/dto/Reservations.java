@@ -1,17 +1,17 @@
 package kr.or.connect.reservation.dto;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class Reservations {
 	
 	private int size;
-	private ArrayList<Reservation> items;
+	private List<Reservation> items;
 	
 	public Reservations() {
 		
 	}
 	
-	public Reservations(int size, ArrayList<Reservation> items) {
+	public Reservations(int size, List<Reservation> items) {
 		super();
 		this.size = size;
 		this.items = items;
@@ -25,11 +25,11 @@ public class Reservations {
 		this.size = size;
 	}
 
-	public ArrayList<Reservation> getItems() {
+	public List<Reservation> getItems() {
 		return items;
 	}
 
-	public void setItems(ArrayList<Reservation> items) {
+	public void setItems(List<Reservation> items) {
 		this.items = items;
 	}
 

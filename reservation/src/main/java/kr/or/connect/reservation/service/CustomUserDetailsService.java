@@ -37,6 +37,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 		
 		List<UserRoleEntity> userRoles = userDbService.getUserRoles(userEmail);
 		List<GrantedAuthority> authorities = new ArrayList<>();
+		System.out.println(userRoles);
 		if(userRoles != null) {
 			for(UserRoleEntity userRole : userRoles) {
 				authorities.add(new SimpleGrantedAuthority(userRole.getRoleName()));

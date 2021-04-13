@@ -25,6 +25,7 @@ public class UserRoleDao {
 	}
 	
 	public List<UserRole> getUserRoles(String userId){
+		System.out.println("UserRoleDao[userId : "+userId+"]");
 		Map<String,Object> param = new HashMap<>();
 		param.put("userId", userId);
 		

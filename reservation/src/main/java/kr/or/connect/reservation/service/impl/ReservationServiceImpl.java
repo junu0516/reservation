@@ -1,5 +1,7 @@
 package kr.or.connect.reservation.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -7,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import kr.or.connect.reservation.dao.ReservationDao;
 import kr.or.connect.reservation.dto.Price;
 import kr.or.connect.reservation.dto.PriceInsertion;
+import kr.or.connect.reservation.dto.Reservation;
 import kr.or.connect.reservation.dto.ReservationInfo;
 import kr.or.connect.reservation.dto.ReservationInsertion;
 import kr.or.connect.reservation.service.ReservationService;
@@ -20,6 +23,8 @@ public class ReservationServiceImpl implements ReservationService {
 	@Override
 	@Transactional
 	public ReservationInfo insertReservationInfo(ReservationInsertion reservationInsertion) {
+		
+		System.out.println("service");
 		
 		//예약정보 먼저 등록 후 예약정보 id 반환
 		int reservationInfoId = reservationDao.insertReservationInfo(reservationInsertion);
@@ -35,5 +40,29 @@ public class ReservationServiceImpl implements ReservationService {
 		reservationInfo.setPrices(priceInfo);
 		
 		return reservationInfo;
+	}
+
+	@Override
+	public List<Reservation> selectReservations(int userId) {
+		
+		List<Reservation> reservations = reservationDao.selectReservations(userId);
+		
+		return reservations;
+	}
+
+	@Override
+	@Transactional
+	public String cancelReservation(Integer id) {
+		
+		int updateCount = reservationDao.cancelReservation(id);
+
+		String result = "";
+		if(updateCount>0) {
+			result = "success";
+		}else {
+			result = "fail";
+		}
+		
+		return result;
 	}
 }
