@@ -7,13 +7,18 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -22,12 +27,19 @@ import org.springframework.web.filter.CharacterEncodingFilter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import kr.or.connect.reservation.config.ApplicationConfig;
+import kr.or.connect.reservation.config.MvcConfig;
 import kr.or.connect.reservation.dto.Price;
 import kr.or.connect.reservation.dto.PriceInsertion;
+import kr.or.connect.reservation.dto.Reservation;
 import kr.or.connect.reservation.dto.ReservationInfo;
 import kr.or.connect.reservation.dto.ReservationInsertion;
+import kr.or.connect.reservation.dto.Reservations;
 import kr.or.connect.reservation.service.ReservationService;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@WebAppConfiguration
+@ContextConfiguration(classes = {MvcConfig.class, ApplicationConfig.class })
 public class ReservationControllerTest {
 	
 	@InjectMocks
@@ -91,6 +103,23 @@ public class ReservationControllerTest {
 			   .andDo(print());
 	
 		verify(reservationService).insertReservationInfo(reservationInsertion);
+		
+	}
+	
+	@Test
+	public void selectReservations() throws Exception{
+		
+		List<Reservation> reservationList = reservationService.selectReservations(1);
+		Reservations reservations = new Reservations();
+		reservations.setItems(reservationList);
+		reservations.setSize(reservationList.size());
+		
+		when(reservationService.selectReservations(1)).thenReturn(reservations.getItems());
+		
+		RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/api/reservationInfos").contentType(MediaType.APPLICATION_JSON);
+		mockMvc.perform(requestBuilder).andExpect(status().isOk()).andDo(print());
+		
+		verify(reservationService).selectReservations(1);
 		
 	}
 }

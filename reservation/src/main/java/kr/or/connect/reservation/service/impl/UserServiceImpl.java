@@ -36,7 +36,11 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	@Transactional
-	public List<UserRoleEntity> getUserRoles(String userId) {
+	public List<UserRoleEntity> getUserRoles(String userEmail) {
+		
+		User user = userDao.getUser(userEmail);
+		String userId = user.getUserId();
+		
 		List<UserRole> userRoles = userRoleDao.getUserRoles(userId);
 		List<UserRoleEntity> userRoleEntities = new ArrayList<>();
 		

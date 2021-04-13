@@ -35,5 +35,10 @@ public class UserController {
 		System.out.println("로그인 실패 ");
 		return "user/failure";
 	}
+	
+	@GetMapping("/secure")
+	public String testSecure() {
+		return "user/secure";
+	}
 
 }
