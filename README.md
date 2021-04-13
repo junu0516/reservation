@@ -9,6 +9,7 @@
     - 예약정보, 전시정보 등 필요한 정보를 REST API로 제공
     - Spring Security를 활용한 인증/인가 설정
     - Mock 객체와 JUnit를 활용한 RestController 테스트
+    - Swagger UI를 통한 API 문서화 테스트
 
 - 프로젝트를 수행하면서 발생한 이슈의 해결과정은 [여기](https://github.com/junu0516/reservation/issues)를 확인해주세요
 - Git 활용 방식
