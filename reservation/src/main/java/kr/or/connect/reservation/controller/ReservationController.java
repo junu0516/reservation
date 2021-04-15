@@ -82,7 +82,6 @@ public class ReservationController {
 	public String cancelReservation(@RequestBody Integer id) {
 		
 		String result = reservationService.cancelReservation(id);
-	
 
 		return result;
 	}

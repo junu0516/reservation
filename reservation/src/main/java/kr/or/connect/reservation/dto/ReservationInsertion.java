@@ -1,5 +1,9 @@
 package kr.or.connect.reservation.dto;
 
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 public class ReservationInsertion {
 	
 	PriceInsertion prices;
@@ -12,13 +16,13 @@ public class ReservationInsertion {
 		
 	}
 	
-	public ReservationInsertion(PriceInsertion prices, int productId, int displayInfoId, String reservationYearMonthDay,
+	public ReservationInsertion(PriceInsertion prices, int productId, int displayInfoId, LocalDate reservationYearMonthDay,
 			int userId) {
 		super();
 		this.prices = prices;
 		this.productId = productId;
 		this.displayInfoId = displayInfoId;
-		this.reservationYearMonthDay = reservationYearMonthDay;
+		this.reservationYearMonthDay = reservationYearMonthDay.format(DateTimeFormatter.ofPattern("yyyy.MM.dd"));
 		this.userId = userId;
 	}
 

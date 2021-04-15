@@ -6,7 +6,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.junit.Before;
@@ -39,7 +41,7 @@ import kr.or.connect.reservation.service.ReservationService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
-@ContextConfiguration(classes = {MvcConfig.class, ApplicationConfig.class })
+@ContextConfiguration(classes = {MvcConfig.class, ApplicationConfig.class})
 public class ReservationControllerTest {
 	
 	@InjectMocks
@@ -58,11 +60,13 @@ public class ReservationControllerTest {
 		MockitoAnnotations.initMocks(this);
 		mockMvc = MockMvcBuilders.standaloneSetup(reservationController).addFilters(new CharacterEncodingFilter("UTF-8",true)).build();
 		objectMapper = new ObjectMapper();
+
+		System.out.println(LocalDate.now().toString());
+		
 	}
 	
 	@Test
-	public void getReservationInfo() throws Exception{
-		
+	public void insertReservationInfosTest() throws Exception{
 		ReservationInsertion reservationInsertion = new ReservationInsertion();
 		PriceInsertion priceInsertion = new PriceInsertion();
 		
@@ -72,7 +76,7 @@ public class ReservationControllerTest {
 		reservationInsertion.setDisplayInfoId(1);
 		reservationInsertion.setProductId(1);
 		reservationInsertion.setUserId(1);
-		reservationInsertion.setReservationYearMonthDay(Timestamp.valueOf(LocalDateTime.now()).toString());
+		reservationInsertion.setReservationYearMonthDay(LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy.MM.dd")));
 		reservationInsertion.setPrices(priceInsertion);
 		
 		ReservationInfo reservationInfo = new ReservationInfo();
@@ -107,7 +111,7 @@ public class ReservationControllerTest {
 	}
 	
 	@Test
-	public void selectReservations() throws Exception{
+	public void selectReservationsTest() throws Exception{
 		
 		List<Reservation> reservationList = reservationService.selectReservations(1);
 		Reservations reservations = new Reservations();
@@ -121,5 +125,18 @@ public class ReservationControllerTest {
 		
 		verify(reservationService).selectReservations(1);
 		
+	}
+	
+	@Test
+	public void cancelReservationTest() throws Exception{
+		
+		Integer id = 1;
+		
+		when(reservationService.cancelReservation(id)).thenReturn("success");
+		
+		RequestBuilder requestBuilder = MockMvcRequestBuilders.put("/api/reservationInfos").contentType(MediaType.APPLICATION_JSON);
+		mockMvc.perform(requestBuilder).andExpect(status().isOk()).andDo(print());
+		
+		verify(reservationService).cancelReservation(id);
 	}
 }
